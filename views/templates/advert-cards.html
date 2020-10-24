@@ -1,0 +1,17 @@
+<div class="cards-container">
+  <% if (adverts.length === 0) { %>
+  <h2 class="no-result">Lo siento, no hay anuncios...</h2>
+  <% } else { %> <% adverts.forEach(advert => { %>
+  <a href="/adverts/<%= advert._id %>" target="_blank" class="advert-card">
+    <img src="/img/adverts/<%= advert.image %>" alt="<%= advert.image %>" />
+    <div class="advert-info <%= advert.sale ? 'sale' : 'buy' %>">
+      <h2><%= advert.name %></h2>
+      <p>
+        <span>Precio: </span> <span class="price"><%= advert.price %> €</span>
+      </p>
+      <p><span>Tags: </span><%= advert.tags %></p>
+      <p><span>Descripción: </span> <%= advert.tinyDescription %></p>
+    </div>
+  </a>
+  <% }); }%>
+</div>

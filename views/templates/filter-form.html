@@ -1,0 +1,60 @@
+<form class="filter">
+  <h2>Filtrar</h2>
+  <div class="filter-field">
+    <label for="tag">Tags</label>
+    <select id="tag" name="tags">
+      <option value="all">-Todos-</option>
+      <option value="lifestyle">Lifestyle</option>
+      <option value="mobile">Mobile</option>
+      <option value="motor">Motor</option>
+      <option value="work">Work</option>
+    </select>
+  </div>
+
+  <div class="filter-field">
+    <input type="radio" id="advertChoice1" name="sale" value="true" />
+    <label for="advertChoice1">Se Vende</label>
+
+    <input type="radio" id="advertChoice2" name="sale" value="false" />
+    <label for="advertChoice2">Se Compra</label>
+
+    <input type="radio" id="advertChoice3" name="sale" value="both" checked />
+    <label for="advertChoice3">Ambos</label>
+  </div>
+  <div class="filter-field">
+    <label for="sort">Ordenar por:</label>
+    <select id="sort" name="sort">
+      <option value="normal">Por defecto</option>
+      <option value="price">Precio</option>
+      <option value="name">Nombre</option>
+    </select>
+  </div>
+
+  <div class="filter-field">
+    <label for="min-price">Precio mínimo</label>
+    <input
+      type="number"
+      name="minPrice"
+      placeholder="0"
+      id="min-price"
+      min="0"
+    />
+    <label for="max-price">Precio máximo</label>
+    <input
+      type="number"
+      name="maxPrice"
+      placeholder="Sin límite"
+      id="max-price"
+      min="1"
+    />
+  </div>
+  <div class="filter-field">
+    <h3>Paginación</h3>
+    <label for="start">Start</label>
+    <input type="number" placeholder="1" name="start" id="start" min="0" />
+    <label for="limit">Limit</label>
+    <input type="number" placeholder="10" name="limit" id="limit" min="0" />
+  </div>
+
+  <button id="button_filter" class="button">Aplicar Filtro</button>
+</form>

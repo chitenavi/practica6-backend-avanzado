@@ -1,0 +1,60 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 9999;
+  padding: 1rem;
+  height: var(--nav-height);
+  background-color: var(--bg-color);
+  box-shadow: 0 1px 9px 1px rgba(0, 0, 0, 0.35);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+.title {
+  font-family: 'Courgette', cursive;
+  color: var(--color-secundario);
+  font-size: 3rem;
+  margin-left: 1rem;
+}
+
+.apidoc-btn {
+  color: black;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+
+  background-color: var(--color-secundario);
+}
+
+.apidoc-btn:hover {
+  cursor: pointer;
+  background-color: var(--color-terciario);
+}
+.navbar a {
+  margin-right: 1rem;
+}
+.logo img {
+  height: calc(var(--nav-height) - 1rem);
+}
+
+.search-nav {
+  flex: 1;
+  color: #b3b3b3;
+}
+
+.search-nav input {
+  padding: 0.5rem;
+  background-color: #242424;
+  color: #b3b3b3;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  margin-right: 0.5rem;
+  width: 50%;
+}
+.search-nav label {
+  font-size: 1.7rem;
+}

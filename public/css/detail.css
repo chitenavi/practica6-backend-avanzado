@@ -1,0 +1,19 @@
+.body-detail {
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  color: lightgray;
+}
+.main-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  flex: 1;
+}
+
+.main-detail h1 {
+  margin: 2rem 0;
+}

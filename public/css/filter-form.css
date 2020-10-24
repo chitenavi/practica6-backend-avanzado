@@ -1,0 +1,24 @@
+.filter {
+  width: 500px;
+  margin: 0 auto;
+  background-color: var(--bg-color);
+  padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+
+  -webkit-box-shadow: 4px 4px 9px -4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 4px 9px -4px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 4px 9px -4px rgba(0, 0, 0, 0.75);
+}
+.filter .filter-field {
+  margin-top: 0.5rem;
+}
+
+.filter h2 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.filter button {
+  margin-top: 1rem;
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Nodepop API documentation",
+  "version": "1.0.0",
+  "description": "API for sales service, managing ads and users (under construction)",
+  "template": {
+    "forceLanguage": "en"
+  }
+}

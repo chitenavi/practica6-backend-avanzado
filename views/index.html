@@ -1,0 +1,20 @@
+<%- include('./templates/head.html') -%>
+<body class="body">
+  <!-- Navbar menu -->
+  <%- include('./templates/nav.html') -%>
+
+  <header class="header">
+    <%- include('./templates/filter-form.html') -%>
+  </header>
+
+  <main class="main">
+    <section class="section" id="articles">
+      <h1>Artículos</h1>
+
+      <%- include('./templates/advert-cards.html') -%>
+    </section>
+  </main>
+
+  <!-- Footer template -->
+  <%- include('./templates/footer.html') -%>
+</body>

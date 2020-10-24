@@ -1,0 +1,79 @@
+<%- include('./templates/head.html') -%>
+<link rel="stylesheet" href="/css/newad.css" />
+<body class="body-newad">
+  <header>
+    <a href="/"><img src="/img/logo.png" alt="logo" /></a>
+  </header>
+
+  <main class="main-newad">
+    <form
+      class="form-newad"
+      action=""
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <h1>Nuevo Anuncio</h1>
+      <div class="field">
+        <label for="name">Nombre:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Nombre del artículo"
+        />
+      </div>
+
+      <div class="field">
+        <label for="price">Precio:</label>
+        <input type="number" id="price" name="price" />
+      </div>
+      <div class="field">
+        <label for="image">Imagen:</label>
+        <input
+          type="file"
+          id="image"
+          name="image"
+          accept="image/png, image/jpeg"
+        />
+      </div>
+
+      <div class="field">
+        <textarea
+          name="description"
+          id="description"
+          cols="30"
+          rows="10"
+          placeholder="Descripción"
+        ></textarea>
+      </div>
+
+      <div class="field">
+        <label for="tags">Tags:</label>
+        <input
+          type="text"
+          id="tags"
+          name="tags"
+          placeholder="lifestyle,mobile,motor,work"
+        />
+      </div>
+
+      <div class="field">
+        <input
+          type="radio"
+          id="advertChoice1"
+          name="sale"
+          value="true"
+          checked
+        />
+        <label for="advertChoice1">Se Vende</label>
+
+        <input type="radio" id="advertChoice2" name="sale" value="false" />
+        <label for="advertChoice2">Se Compra</label>
+      </div>
+
+      <button class="button" id="newAdButton">Enviar</button>
+    </form>
+  </main>
+
+  <%- include('./templates/footer.html') -%>
+</body>

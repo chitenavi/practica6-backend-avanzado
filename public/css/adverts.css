@@ -1,0 +1,79 @@
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cards-container .advert-card {
+  border: solid 1px darkgrey;
+  width: 30%;
+  margin: 1rem;
+  color: black;
+  background-color: lightgray;
+  border-radius: 0.5rem;
+  min-width: 200px;
+
+  -webkit-box-shadow: 4px 4px 9px -4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 4px 9px -4px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 4px 9px -4px rgba(0, 0, 0, 0.75);
+
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.advert-card img {
+  padding: 0.5rem;
+}
+.advert-info {
+  padding: 0.5rem;
+  transition: all 0.2s ease-in-out;
+  z-index: 500;
+  position: relative;
+}
+.advert-info p span {
+  font-weight: bold;
+}
+.advert-info p .price {
+  color: #e55226;
+}
+
+.advert-card:hover {
+  transform: scale(1.05);
+}
+
+.advert-card:hover .advert-info {
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.advert-card .advert-info.sale::before {
+  content: '';
+  background-image: url('../img/forsale.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  z-index: -2;
+
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.3;
+}
+.advert-card .advert-info.buy::before {
+  content: '';
+  background-image: url('../img/wanted.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  z-index: -2;
+
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.3;
+}

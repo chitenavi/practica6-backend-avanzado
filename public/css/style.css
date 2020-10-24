@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Roboto:wght@400;700&family=Quicksand:wght@300;400;600;700&display=swap');
+
+:root {
+  --max-width: 1200px;
+  --nav-height: 100px;
+  --color-primario: #8dc973;
+  --color-secundario: #f78f1e;
+  --color-terciario: #e55226;
+  --bg-color: #333333;
+  --bg-color-sec: #2e2e2e;
+}
+
+.body {
+  font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  background-color: var(--bg-color);
+}
+
+.main {
+  max-width: var(--max-width);
+  align-self: center;
+  width: 100%;
+  flex: 1;
+}
+
+.header {
+  margin-top: var(--nav-height);
+  background-color: var(--bg-color-sec);
+  width: 100%;
+  padding: 2rem;
+  color: lightgray;
+}
+
+input[type='number'] {
+  width: 75px;
+}
+
+.button {
+  border: none;
+  color: black;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  background-color: #b8db9a;
+  font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: var(--color-primario);
+}
+
+.section {
+  margin-top: 3rem;
+  color: lightgray;
+}
+.section h1 {
+  font-size: 2.4rem;
+  font-family: 'Roboto', sans-serif;
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 1rem;
+}

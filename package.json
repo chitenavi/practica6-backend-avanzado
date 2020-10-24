@@ -1,0 +1,59 @@
+{
+  "name": "practica6-backend-avanzado",
+  "version": "1.0.0",
+  "description": "Practica 6 BootCamp Web KC - Backend Avanzado",
+  "main": "app.js",
+  "author": "Ivan Chinea",
+  "license": "ISC",
+  "engines": {
+    "node": ">=10.22.0"
+  },
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:dev": "nodemon",
+    "start": "npm run prod",
+    "server": "node ./server/bin/www",
+    "dev": "cross-env NODE_ENV=development DEBUG=practica4-web-api-node:* npm run server",
+    "prod": "cross-env NODE_ENV=production npm run server",
+    "initdb": "node ./server/dev-data/init-db"
+  },
+  "nodemonConfig": {
+    "exec": "npm run dev",
+    "watch": [
+      "server/*",
+      "public/*"
+    ],
+    "ignore": [
+      "**/__tests__/**",
+      "*.test.js",
+      "*.spec.js"
+    ]
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "cross-env": "^7.0.2",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "~4.16.1",
+    "express-validator": "^6.6.1",
+    "http-errors": "^1.8.0",
+    "mongoose": "^5.10.0",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
+    "prettier": "^2.0.5"
+  }
+}
