@@ -14,7 +14,7 @@
     "watch:dev": "nodemon",
     "start": "npm run prod",
     "server": "node ./server/bin/www",
-    "dev": "cross-env NODE_ENV=development DEBUG=practica4-web-api-node:* npm run server",
+    "dev": "cross-env NODE_ENV=development DEBUG=practica6-backend-avanzado:* npm run server",
     "prod": "cross-env NODE_ENV=production npm run server",
     "initdb": "node ./server/dev-data/init-db"
   },
@@ -31,6 +31,7 @@
     ]
   },
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "cookie-parser": "~1.4.4",
     "cross-env": "^7.0.2",
     "debug": "~2.6.9",
@@ -42,7 +43,8 @@
     "mongoose": "^5.10.0",
     "morgan": "~1.9.1",
     "multer": "^1.4.2",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "validator": "^13.1.17"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
