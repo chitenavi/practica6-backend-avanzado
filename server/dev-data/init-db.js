@@ -55,7 +55,7 @@ const initUsersDB = async () => {
       password: await User.hashPassword(process.env.DEV_USER_PASS),
     },
   ]);
-  console.log(users);
+  // console.log(users);
   console.log(
     `Users successfully loaded!. ${users.length} users have been created.`
   );

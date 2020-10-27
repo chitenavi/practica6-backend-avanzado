@@ -5,6 +5,9 @@
 dist-server
 build
 
+## local certificates
+certs
+
 ### Linux ###
 *~
 

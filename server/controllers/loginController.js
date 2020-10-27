@@ -35,11 +35,10 @@ class LoginController {
       // si el usuario existe y la password es correcta
 
       // apuntar el _id del usuario en su sessión
-      /*
       req.session.authUser = {
         _id: user._id,
         // rol: ...
-      };*/
+      };
 
       // enviar email
       // expresamente no ponemos await para no esperar a que se mande el email antes de redirigir
@@ -54,11 +53,26 @@ class LoginController {
       */
 
       // redirigir a zona privada
-      console.log('User logged successfully!');
+      console.log(`${user.username} logged successfully!`);
       res.redirect('/');
     } catch (err) {
       next(err);
     }
+  }
+
+  /**
+   * GET /logout
+   */
+  getLogout(req, res, next) {
+    req.session.regenerate(err => {
+      if (err) {
+        next(err);
+        return;
+      }
+
+      // redirigimos al home
+      res.redirect('/');
+    });
   }
 }
 

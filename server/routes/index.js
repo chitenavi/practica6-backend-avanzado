@@ -11,6 +11,8 @@ const {
   createNewAdv,
 } = require('../controllers/indexController');
 
+const loginController = require('../controllers/loginController');
+
 const router = express.Router();
 
 /* GET home page. */
@@ -22,8 +24,11 @@ router.route('/adverts/:id').get(getDetailAdvPage);
 /* GET new product page. */
 /* POST create new product, redirect to home. */
 router
-  .route('/newadv/')
+  .route('/newadv')
   .get(getNewAdvPage)
   .post(uploadAdvImg, advertValidationRules(), validate, createNewAdv);
+
+/* GET user logout */
+router.route('/logout').get(loginController.getLogout);
 
 module.exports = router;

@@ -4,10 +4,12 @@
  * Module dependencies.
  */
 require('dotenv').config();
+const fs = require('fs');
 
 const mongoose = require('mongoose');
 const debug = require('debug')('practica6-backend-avanzado:server');
-const http = require('http');
+// const http = require('http');
+const https = require('https');
 const app = require('../app');
 
 // Remote database
@@ -15,6 +17,14 @@ const app = require('../app');
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
 ); */
+
+// Read local certificates for https
+const options = {
+  cert: fs.readFileSync('./certs/example.com+4.pem'),
+  key: fs.readFileSync('./certs/example.com+4-key.pem'),
+};
+
+// console.log(options);
 
 // Local database
 const DB = process.env.DATABASE_LOCAL;
@@ -43,7 +53,8 @@ function normalizePort(val) {
  * Create HTTP server.
  */
 
-const server = http.createServer(app);
+// const server = http.createServer(app);
+const server = https.createServer(options, app);
 
 /**
  * Get port from environment and store in Express.

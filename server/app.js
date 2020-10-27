@@ -4,8 +4,12 @@ const path = require('path');
 const ejs = require('ejs');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const sessionSetup = require('./utils/sessionSetup');
 
 const app = express();
+
+// Connection to DB
+const mongoConnection = require('./utils/connectMoonDB');
 
 // view engine setup, ejs to html file extension
 app.set('views', path.join(__dirname, '../views'));
@@ -21,6 +25,16 @@ app.use(express.static(path.join(__dirname, '../public')));
 // Middleware for catch request date
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
+  next();
+});
+
+// const sessionAuth = require('./utils/sessionAuth');
+
+app.use(sessionSetup(mongoConnection));
+
+// hacer disponible el objeto de sesión en todas las vistas
+app.use((req, res, next) => {
+  res.locals.session = req.session;
   next();
 });
 
