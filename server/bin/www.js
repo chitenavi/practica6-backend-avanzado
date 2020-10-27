@@ -6,7 +6,7 @@
 require('dotenv').config();
 
 const mongoose = require('mongoose');
-const debug = require('debug')('practica4-web-api-node:server');
+const debug = require('debug')('practica6-backend-avanzado:server');
 const http = require('http');
 const app = require('../app');
 
