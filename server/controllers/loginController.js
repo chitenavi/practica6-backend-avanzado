@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt');
 const User = require('../models/userModel');
 
 class LoginController {
@@ -21,11 +20,12 @@ class LoginController {
       const { password } = req.body;
 
       // find user in DB
-      const user = await User.findOne({ email: email });
+      const user = await User.findOne({ email }).select('+password');
 
       // if no user or pass is diferent redirect to login
       // and show the errors
-      if (!user || !(await bcrypt.compare(password, user.password))) {
+
+      if (!user || !(await user.comparePasswords(password, user.password))) {
         res.locals.error = 'Invalid credentials';
         res.locals.email = email;
         res.render('login', { title: 'Nodepop - Login' });
@@ -51,7 +51,7 @@ class LoginController {
       */
 
       // redirect to user dashboard
-      console.log(`${user.username} logged successfully!`);
+      // console.log(`${user.username} logged successfully!`);
       res.redirect('/');
     } catch (err) {
       next(err);

@@ -17,18 +17,26 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       validate: [validator.isEmail, 'Please add a valid email'],
     },
-    avatar: String,
     password: {
       type: String,
       required: [true, 'Please provide a password'],
       minlength: 4,
+      select: false,
     },
+    avatar: String,
   },
   { timestamps: true }
 );
 
-userSchema.statics.hashPassword = function (plainTextPass) {
-  return bcrypt.hash(plainTextPass, 10);
+userSchema.statics.hashPassword = async function (plainTextPass) {
+  return await bcrypt.hash(plainTextPass, 10);
+};
+
+userSchema.methods.comparePasswords = async function (
+  tryPassword,
+  userPassword
+) {
+  return await bcrypt.compare(tryPassword, userPassword);
 };
 
 const User = mongoose.model('User', userSchema);
