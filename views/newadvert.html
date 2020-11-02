@@ -1,8 +1,10 @@
 <%- include('./templates/head.html') -%>
 <link rel="stylesheet" href="/css/newad.css" />
 <body class="body-newad">
-  <header>
-    <a href="/"><img src="/img/logo.png" alt="logo" /></a>
+  <!-- Navbar menu -->
+  <%- include('./templates/nav.html') -%>
+  <header class="header">
+    <h1>Nuevo Anuncio</h1>
   </header>
 
   <main class="main-newad">
@@ -12,7 +14,6 @@
       method="POST"
       enctype="multipart/form-data"
     >
-      <h1>Nuevo Anuncio</h1>
       <div class="field">
         <label for="name">Nombre:</label>
         <input

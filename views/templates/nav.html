@@ -2,7 +2,13 @@
   <div class="logo">
     <a href="/"><img src="/img/logo.png" alt="logo" /></a>
   </div>
-  <h1 class="title">Nodepop</h1>
+  <div class="locales">
+    <% getLocales().forEach( locale => { %>
+    <a href="/change-locale/<%= locale %>">
+      <img src="/img/regions/<%= locale %>.png" alt="<%= locale %>" />
+    </a>
+    <% }); %>
+  </div>
   <form class="search-nav">
     <input
       type="search"

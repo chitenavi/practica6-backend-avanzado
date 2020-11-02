@@ -1,17 +1,18 @@
 .body-detail {
   background-color: var(--bg-color);
+  font-family: 'Quicksand', Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   color: lightgray;
 }
 .main-detail {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
   flex: 1;
+}
+
+.main-detail section {
+  margin: 2rem 0;
+  text-align: center;
 }
 
 .main-detail h1 {

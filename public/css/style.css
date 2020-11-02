@@ -29,6 +29,7 @@
 .header {
   margin-top: var(--nav-height);
   background-color: var(--bg-color-sec);
+  text-align: center;
   width: 100%;
   padding: 2rem;
   color: lightgray;

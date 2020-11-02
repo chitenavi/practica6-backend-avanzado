@@ -2,7 +2,7 @@
   <% if (adverts.length === 0) { %>
   <h2 class="no-result">Lo siento, no hay anuncios...</h2>
   <% } else { %> <% adverts.forEach(advert => { %>
-  <a href="/adverts/<%= advert._id %>" target="_blank" class="advert-card">
+  <a href="/adverts/<%= advert._id %>" class="advert-card">
     <img src="/img/adverts/<%= advert.image %>" alt="<%= advert.image %>" />
     <div class="advert-info <%= advert.sale ? 'sale' : 'buy' %>">
       <h2><%= advert.name %></h2>
