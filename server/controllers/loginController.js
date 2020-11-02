@@ -16,23 +16,21 @@ class LoginController {
    */
   async postUserLogin(req, res, next) {
     try {
-      // recoger valores de entrada
+      // load values from request body
       const { email } = req.body;
       const { password } = req.body;
 
-      // buscar el usuario en la BD
+      // find user in DB
       const user = await User.findOne({ email: email });
 
-      // si no existe el usuario o la password no coincide
-      // mostrar un error
+      // if no user or pass is diferent redirect to login
+      // and show the errors
       if (!user || !(await bcrypt.compare(password, user.password))) {
         res.locals.error = 'Invalid credentials';
         res.locals.email = email;
         res.render('login', { title: 'Nodepop - Login' });
         return;
       }
-
-      // si el usuario existe y la password es correcta
 
       // apuntar el _id del usuario en su sessión
       req.session.authUser = {
@@ -52,7 +50,7 @@ class LoginController {
       );
       */
 
-      // redirigir a zona privada
+      // redirect to user dashboard
       console.log(`${user.username} logged successfully!`);
       res.redirect('/');
     } catch (err) {
@@ -69,8 +67,9 @@ class LoginController {
         next(err);
         return;
       }
+      // regenerate new session
 
-      // redirigimos al home
+      // redirect to home
       res.redirect('/');
     });
   }

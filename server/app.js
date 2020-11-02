@@ -1,3 +1,9 @@
+// TODO: 1. Implementar autenticación al API con JWT
+// TODO: 2. Internacionalización. Frontend en ingés y español
+// TODO: 3. Api endpoint crear anuncion con imagen. Thumbnail 100x100px microservicio
+// TODO: 4. Testing del API con supertest
+// TODO: 5. Crear un módulo npm público con una utilidad práctica
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -22,17 +28,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
+// i18n module, middleware for internationalize website
+const i18n = require('./utils/i18nSetup');
+
+app.use(i18n.init);
+
 // Middleware for catch request date
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   next();
 });
 
-// const sessionAuth = require('./utils/sessionAuth');
-
+// Init session system (load on req.session) and persist in DB
 app.use(sessionSetup(mongoConnection));
 
-// hacer disponible el objeto de sesión en todas las vistas
+// Make session object for use in all views
 app.use((req, res, next) => {
   res.locals.session = req.session;
   next();
@@ -42,20 +52,20 @@ app.use((req, res, next) => {
  * Website routes
  */
 app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
 app.use('/login', require('./routes/login'));
 
 /**
  * API routes
  */
 app.use('/api/v1/adverts', require('./routes/api/advertRoutes')); // adverts
+app.use('/api/v1/users', require('./routes/api/users'));
 
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
+// if any request url no exits, then catch 404 and forward to error handler
+app.all('*', (req, res, next) => {
   next(createError(404, `Not Found ${req.originalUrl} on this server!!`));
 });
 
-// error handler
+// Global error handler
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;

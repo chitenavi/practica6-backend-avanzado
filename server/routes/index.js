@@ -13,6 +13,8 @@ const {
 
 const loginController = require('../controllers/loginController');
 
+const sessionAuth = require('../utils/sessionAuth');
+
 const router = express.Router();
 
 /* GET home page. */
@@ -25,8 +27,14 @@ router.route('/adverts/:id').get(getDetailAdvPage);
 /* POST create new product, redirect to home. */
 router
   .route('/newadv')
-  .get(getNewAdvPage)
-  .post(uploadAdvImg, advertValidationRules(), validate, createNewAdv);
+  .get(sessionAuth(), getNewAdvPage)
+  .post(
+    sessionAuth(),
+    uploadAdvImg,
+    advertValidationRules(),
+    validate,
+    createNewAdv
+  );
 
 /* GET user logout */
 router.route('/logout').get(loginController.getLogout);

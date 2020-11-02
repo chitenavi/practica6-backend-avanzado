@@ -7,7 +7,7 @@ const signup = async (req, res, next) => {
     // Create new user to DB
     const newUser = await User.create(req.body);
 
-    // if it was all correct, return
+    // if it was all correct, return json success data
     res.status(201).json({
       status: 'success',
       data: {
