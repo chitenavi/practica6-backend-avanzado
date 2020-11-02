@@ -11,6 +11,7 @@ const ejs = require('ejs');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sessionSetup = require('./utils/sessionSetup');
+const jwtAuth = require('./utils/jwtAuth');
 
 const app = express();
 
@@ -53,11 +54,12 @@ app.use((req, res, next) => {
  */
 app.use('/', require('./routes/index'));
 app.use('/login', require('./routes/login'));
+app.use('/change-locale', require('./routes/change-locale'));
 
 /**
  * API routes
  */
-app.use('/api/v1/adverts', require('./routes/api/advertRoutes')); // adverts
+app.use('/api/v1/adverts', jwtAuth(), require('./routes/api/advertRoutes')); // adverts
 app.use('/api/v1/users', require('./routes/api/users'));
 
 // if any request url no exits, then catch 404 and forward to error handler

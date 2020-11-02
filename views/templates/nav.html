@@ -14,18 +14,20 @@
       type="search"
       name="name"
       id="search"
-      placeholder="Buscar anuncio..."
+      placeholder="<%= __('Search add...') %>"
     />
     <label for="search"><i class="fas fa-search"></i></label>
   </form>
 
-  <a href="/apidoc/" class="apidoc-btn" target="_blank">API Documentation</a>
+  <a href="/apidoc/" class="apidoc-btn" target="_blank"
+    ><%= __('API Documentation') %></a
+  >
 
   <% if (!session.authUser) { %>
-  <a href="/login" class="button" id="login">Login</a>
+  <a href="/login" class="button" id="login"><%= __('Login') %></a>
   <% } else { %>
-  <a class="button" href="/newadv">New Add</a>
-  <a class="button" href="/user">Panel</a>
-  <a class="button" href="/logout">Logout</a>
+  <a class="button" href="/newadv"><%= __('New add') %></a>
+  <a class="button" href="/user"><%= __('Panel') %></a>
+  <a class="button" href="/logout"><%= __('Logout') %></a>
   <% } %>
 </nav>
