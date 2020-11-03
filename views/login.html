@@ -11,20 +11,24 @@
   <main class="main-login">
     <form class="form-login" method="POST">
       <div class="form-field">
-        <label for="exampleInputEmail1">Email address</label>
         <input
           type="email"
           name="email"
           id="exampleInputEmail1"
           value="<%= email %>"
+          placeholder="<%= __('Email address') %>"
         />
       </div>
       <div class="form-field">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" name="password" id="exampleInputPassword1" />
+        <input
+          type="password"
+          name="password"
+          id="exampleInputPassword1"
+          placeholder="<%= __('Password') %>"
+        />
       </div>
       <div class="form-field">
-        <button type="submit" class="button">Submit</button>
+        <button type="submit" class="button"><%= __('Submit') %></button>
       </div>
       <div class="form-field">
         <div class="validate-errors"><%= error %></div>

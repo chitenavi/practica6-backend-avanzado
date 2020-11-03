@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const Advert = require('../models/advertModel');
+const User = require('../models/userModel');
 
 const getHomePage = async (req, res, next) => {
   try {
@@ -30,6 +31,19 @@ const getNewAdvPage = async (req, res, next) => {
     res.render('newadvert', { title: 'Nuevo Anuncio' });
   } catch (err) {
     next(createError(404, err));
+  }
+};
+
+const getDashboardPage = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ _id: req.session.authUser._id });
+    if (!user) {
+      return next(createError(401, 'User not found'));
+    }
+
+    res.render('dashboard', { title: 'Nodepop - Dashboard', user });
+  } catch (err) {
+    return next(err);
   }
 };
 
@@ -65,5 +79,6 @@ module.exports = {
   getHomePage,
   getDetailAdvPage,
   getNewAdvPage,
+  getDashboardPage,
   createNewAdv,
 };

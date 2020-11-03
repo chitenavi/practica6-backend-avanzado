@@ -1,6 +1,7 @@
 .filter {
   width: 500px;
   margin: 0 auto;
+  margin-top: 1rem;
   background-color: var(--bg-color);
   padding: 1rem;
   border-radius: 1rem;

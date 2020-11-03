@@ -52,7 +52,7 @@ class LoginController {
 
       // redirect to user dashboard
       // console.log(`${user.username} logged successfully!`);
-      res.redirect('/');
+      res.redirect('/dashboard');
     } catch (err) {
       next(err);
     }

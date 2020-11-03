@@ -9,25 +9,27 @@
     </a>
     <% }); %>
   </div>
-  <form class="search-nav">
-    <input
-      type="search"
-      name="name"
-      id="search"
-      placeholder="<%= __('Search add...') %>"
-    />
-    <label for="search"><i class="fas fa-search"></i></label>
-  </form>
 
-  <a href="/apidoc/" class="apidoc-btn" target="_blank"
-    ><%= __('API Documentation') %></a
-  >
-
-  <% if (!session.authUser) { %>
-  <a href="/login" class="button" id="login"><%= __('Login') %></a>
-  <% } else { %>
-  <a class="button" href="/newadv"><%= __('New add') %></a>
-  <a class="button" href="/user"><%= __('Panel') %></a>
-  <a class="button" href="/logout"><%= __('Logout') %></a>
-  <% } %>
+  <ul class="menu">
+    <li class="menu-item">
+      <a href="/apidoc/" class="apidoc-btn" target="_blank"
+        ><%= __('API Documentation') %></a
+      >
+    </li>
+    <% if (!session.authUser) { %>
+    <li class="menu-item">
+      <a href="/login" class="button" id="login"><%= __('Login') %></a>
+    </li>
+    <% } else { %>
+    <li class="menu-item">
+      <a class="button" href="/newadv"><%= __('New add') %></a>
+    </li>
+    <li class="menu-item">
+      <a class="button" href="/dashboard"><%= __('Panel') %></a>
+    </li>
+    <li class="menu-item">
+      <a class="button" href="/logout"><%= __('Logout') %></a>
+    </li>
+    <% } %>
+  </ul>
 </nav>

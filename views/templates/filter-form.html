@@ -1,38 +1,38 @@
 <form class="filter">
-  <h2>Filtrar</h2>
+  <h2><%= __('Filter') %></h2>
 
   <div class="filter-field">
-    <label for="tag">Tags</label>
+    <label for="tag"><%= __('Tags') %></label>
     <select id="tag" name="tags">
-      <option value="all">-Todos-</option>
-      <option value="lifestyle">Lifestyle</option>
-      <option value="mobile">Mobile</option>
-      <option value="motor">Motor</option>
-      <option value="work">Work</option>
+      <option value="all">-<%= __('All') %>-</option>
+      <option value="lifestyle"><%= __('Lifestyle') %></option>
+      <option value="mobile"><%= __('Mobile') %></option>
+      <option value="motor"><%= __('Motor') %></option>
+      <option value="work"><%= __('Work') %></option>
     </select>
   </div>
 
   <div class="filter-field">
     <input type="radio" id="advertChoice1" name="sale" value="true" />
-    <label for="advertChoice1">Se Vende</label>
+    <label for="advertChoice1"><%= __('For Sale') %></label>
 
     <input type="radio" id="advertChoice2" name="sale" value="false" />
-    <label for="advertChoice2">Se Compra</label>
+    <label for="advertChoice2"><%= __('For Buy') %></label>
 
     <input type="radio" id="advertChoice3" name="sale" value="both" checked />
-    <label for="advertChoice3">Ambos</label>
+    <label for="advertChoice3"><%= __('Both') %></label>
   </div>
   <div class="filter-field">
-    <label for="sort">Ordenar por:</label>
+    <label for="sort"><%= __('Sort by:') %></label>
     <select id="sort" name="sort">
-      <option value="normal">Por defecto</option>
-      <option value="price">Precio</option>
-      <option value="name">Nombre</option>
+      <option value="normal"><%= __('Default') %></option>
+      <option value="price"><%= __('Price') %></option>
+      <option value="name"><%= __('Name') %></option>
     </select>
   </div>
 
   <div class="filter-field">
-    <label for="min-price">Precio mínimo</label>
+    <label for="min-price"><%= __('Min price') %></label>
     <input
       type="number"
       name="minPrice"
@@ -40,22 +40,22 @@
       id="min-price"
       min="0"
     />
-    <label for="max-price">Precio máximo</label>
+    <label for="max-price"><%= __('Max price') %></label>
     <input
       type="number"
       name="maxPrice"
-      placeholder="Sin límite"
+      placeholder="<%= __('No limit') %>"
       id="max-price"
       min="1"
     />
   </div>
   <div class="filter-field">
-    <h3>Paginación</h3>
-    <label for="start">Start</label>
+    <h3><%= __('Paginate') %></h3>
+    <label for="start"><%= __('Start') %></label>
     <input type="number" placeholder="1" name="start" id="start" min="0" />
-    <label for="limit">Limit</label>
+    <label for="limit"><%= __('Limit') %></label>
     <input type="number" placeholder="10" name="limit" id="limit" min="0" />
   </div>
 
-  <button id="button_filter" class="button">Aplicar Filtro</button>
+  <button id="button_filter" class="button"><%= __('Apply Filter') %></button>
 </form>

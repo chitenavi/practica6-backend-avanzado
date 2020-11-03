@@ -5,15 +5,25 @@
   <%- include('./templates/nav.html') -%>
 
    <header class="header">
-      <h1>Página de detalle del artículo</h1>
+      <h1><%= advert.name %></h1>
    </header>
    <main class="main-detail">
-      <section class="product-info">
+      <section class="product-detail">
          <div class="img-container">
             <img src="/img/adverts/<%= advert.image %> " alt="<%= advert.name %>">
          </div>
          
-         <h2>🚧 En construcción 🚧</h2>
+         <div class="advert-detail">
+            <p><span><%= __('Type: ') %></span><%= advert.sale ? __('for sale') : __('for buy') %></p>
+            <p>
+              <span><%= __('Price: ') %></span>
+              <span class="price"><%= advert.price %> €</span>
+            </p>
+            <p><span><%= __('Tags: ') %></span><%= advert.tags %></p>
+            <p>
+              <span><%= __('Description: ') %></span> <%= advert.description %>
+            </p>
+          </div>
       </section>
    </main>
    <%- include('./templates/footer.html') -%>

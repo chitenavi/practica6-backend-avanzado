@@ -8,13 +8,33 @@
 }
 .main-detail {
   flex: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
 }
 
-.main-detail section {
-  margin: 2rem 0;
-  text-align: center;
+.main-detail .product-detail {
+  margin-top: 1rem;
+  background-color: var(--bg-color-sec);
+  padding: 1rem;
+  max-width: 800px;
+  border-radius: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+  -webkit-box-shadow: 4px 4px 9px -4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 4px 9px -4px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 4px 9px -4px rgba(0, 0, 0, 0.75);
 }
 
-.main-detail h1 {
-  margin: 2rem 0;
+.advert-detail {
+  font-size: 1.2rem;
+}
+
+.advert-detail > p {
+  margin-bottom: 0.5rem;
+}
+
+.advert-detail p span {
+  font-weight: bold;
 }

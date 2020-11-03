@@ -1,4 +1,4 @@
-.main-login {
+.main-dashboard {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -6,9 +6,10 @@
   align-items: center;
 }
 
-.form-login {
-  width: 400px;
-  background-color: darkgray;
+.user-dashboard {
+  margin-top: 1rem;
+  width: 300px;
+  background-color: darkgrey;
   padding: 1rem;
   border-radius: 1rem;
   text-align: center;
@@ -18,19 +19,15 @@
   box-shadow: 4px 4px 9px -4px rgba(0, 0, 0, 0.75);
 }
 
-.form-login .form-field {
-  margin-top: 0.5rem;
+.menu-dashboard {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.form-login button {
-  font-size: 1.1rem;
-}
-
-.form-field input {
-  border: none;
-  height: 2rem;
-  width: 100%;
-  border-radius: 0.5rem;
-  font-family: inherit;
-  font-size: 1.2rem;
+.menu-dashboard a {
+  display: block;
+  margin: 0.5rem 0;
 }

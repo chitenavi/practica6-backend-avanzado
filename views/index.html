@@ -4,12 +4,21 @@
   <%- include('./templates/nav.html') -%>
 
   <header class="header">
+    <form class="search-nav">
+      <input
+        type="search"
+        name="name"
+        id="search"
+        placeholder="<%= __('Search add...') %>"
+      />
+      <label for="search"><i class="fas fa-search"></i></label>
+    </form>
     <%- include('./templates/filter-form.html') -%>
   </header>
 
   <main class="main">
     <section class="section" id="articles">
-      <h1>Artículos</h1>
+      <h1><%= __('Articles') %></h1>
 
       <%- include('./templates/advert-cards.html') -%>
     </section>

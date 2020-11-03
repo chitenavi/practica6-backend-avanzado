@@ -4,7 +4,7 @@
   <!-- Navbar menu -->
   <%- include('./templates/nav.html') -%>
   <header class="header">
-    <h1>Nuevo Anuncio</h1>
+    <h1><%= __('New Advert') %></h1>
   </header>
 
   <main class="main-newad">
@@ -16,21 +16,21 @@
         enctype="multipart/form-data"
       >
         <div class="field">
-          <label for="name">Nombre:</label>
+          <label for="name"><%= __('Name:') %></label>
           <input
             type="text"
             id="name"
             name="name"
-            placeholder="Nombre del artículo"
+            placeholder="<%= __('Article name') %>"
           />
         </div>
 
         <div class="field">
-          <label for="price">Precio:</label>
+          <label for="price"><%= __('Price:') %></label>
           <input type="number" id="price" name="price" />
         </div>
         <div class="field">
-          <label for="image">Imagen:</label>
+          <label for="image"><%= __('Image:') %></label>
           <input
             type="file"
             id="image"
@@ -45,12 +45,12 @@
             id="description"
             cols="30"
             rows="10"
-            placeholder="Descripción"
+            placeholder="<%= __('Description') %>"
           ></textarea>
         </div>
 
         <div class="field">
-          <label for="tags">Tags:</label>
+          <label for="tags"><%= __('Tags:') %>:</label>
           <input
             type="text"
             id="tags"
@@ -67,13 +67,13 @@
             value="true"
             checked
           />
-          <label for="advertChoice1">Se Vende</label>
+          <label for="advertChoice1"><%= __('For Sale') %></label>
 
           <input type="radio" id="advertChoice2" name="sale" value="false" />
-          <label for="advertChoice2">Se Compra</label>
+          <label for="advertChoice2"><%= __('For Buy') %></label>
         </div>
 
-        <button class="button" id="newAdButton">Enviar</button>
+        <button class="button" id="newAdButton"><%= __('Submit') %></button>
       </form>
     </section>
   </main>

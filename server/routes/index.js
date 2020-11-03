@@ -8,6 +8,7 @@ const {
   getHomePage,
   getDetailAdvPage,
   getNewAdvPage,
+  getDashboardPage,
   createNewAdv,
 } = require('../controllers/indexController');
 
@@ -25,6 +26,7 @@ router.route('/adverts/:id').get(getDetailAdvPage);
 
 /* GET new product page. */
 /* POST create new product, redirect to home. */
+// Private content, only if user is logged
 router
   .route('/newadv')
   .get(sessionAuth(), getNewAdvPage)
@@ -35,6 +37,10 @@ router
     validate,
     createNewAdv
   );
+
+/* GET dashborad user page */
+// Private content, only if user is logged
+router.route('/dashboard').get(sessionAuth(), getDashboardPage);
 
 /* GET user logout */
 router.route('/logout').get(loginController.getLogout);
