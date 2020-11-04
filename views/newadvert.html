@@ -74,6 +74,11 @@
         </div>
 
         <button class="button" id="newAdButton"><%= __('Submit') %></button>
+        <div class="field error">
+          <% if (err) { %>
+          <p><%= err.message %></p>
+          <% } %>
+        </div>
       </form>
     </section>
   </main>

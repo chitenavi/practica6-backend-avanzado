@@ -19,7 +19,15 @@
   flex: 1;
   justify-content: flex-end;
 }
-
+.menu .menu-item {
+  margin-right: 0.5rem;
+}
+.locales {
+  margin-left: 1rem;
+}
+.locales .activo {
+  border-bottom: solid 1px var(--color-secundario);
+}
 .apidoc-btn {
   color: black;
   padding: 0.5rem 1rem;
@@ -32,9 +40,7 @@
   cursor: pointer;
   background-color: var(--color-terciario);
 }
-.navbar a {
-  margin-right: 1rem;
-}
+
 .logo img {
   height: calc(var(--nav-height) - 1rem);
 }

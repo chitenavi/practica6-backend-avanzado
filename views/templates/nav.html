@@ -5,7 +5,8 @@
   <div class="locales">
     <% getLocales().forEach( locale => { %>
     <a href="/change-locale/<%= locale %>">
-      <img src="/img/regions/<%= locale %>.png" alt="<%= locale %>" />
+      <img <% if (locale === getLocale()) { %> class="activo" <% } %>
+      src="/img/regions/<%= locale %>.png" alt="<%= locale %>" />
     </a>
     <% }); %>
   </div>
