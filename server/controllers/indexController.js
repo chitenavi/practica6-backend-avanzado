@@ -1,11 +1,43 @@
 const createError = require('http-errors');
+const cote = require('cote');
 const Advert = require('../models/advertModel');
 const User = require('../models/userModel');
+const { getFilterObj } = require('../utils/apiFilter');
 
 const getHomePage = async (req, res, next) => {
   try {
-    // GET all adverts, apply the received query string if it exists
-    const adverts = await Advert.listAdverts(Advert.find(), req.query);
+    // ** FILTER
+    // Obtain filter object from query string
+    const filterObj = getFilterObj(req.query);
+
+    // ** SORT
+    // Order by one or more keys separated by commas
+    // if no sort, then we apply sort by create date by default
+    const sortBy = req.query.sort
+      ? req.query.sort.split(',').join(' ')
+      : 'createdAt';
+
+    // ** FIELDS
+    // return only the desired fields
+    // by default, return everything except __v field, use by moongose
+    const fields = req.query.fields
+      ? req.query.fields.split(',').join(' ')
+      : '-__v';
+
+    // ** PAGINATE
+    // Return 20 adverts by default
+    const start = req.query.start * 1 || 1;
+    const limit = req.query.limit * 1 || 20;
+    const skip = (start - 1) * limit;
+
+    // GET all adverts, apply filter, sort, limit fields or paginate if it exists
+    const adverts = await Advert.listAdverts(
+      filterObj,
+      sortBy,
+      fields,
+      limit,
+      skip
+    );
 
     // Render home page with the obtained adverts
     res.render('index', { title: 'Nodepop', adverts });
@@ -20,7 +52,10 @@ const getDetailAdvPage = async (req, res, next) => {
     const advert = await Advert.findById(req.params.id);
 
     // Render detail page with more info
-    res.render('advertdetail', { title: advert.name, advert });
+    res.render('advertdetail', {
+      title: res.__('Nodepop - Product Detail'),
+      advert,
+    });
   } catch (err) {
     next(createError(404, err));
   }
@@ -28,7 +63,7 @@ const getDetailAdvPage = async (req, res, next) => {
 
 const getNewAdvPage = async (req, res, next) => {
   try {
-    res.render('newadvert', { title: 'Nuevo Anuncio' });
+    res.render('newadvert', { title: res.__('Nodepop - New Advert'), err: '' });
   } catch (err) {
     next(createError(404, err));
   }
@@ -41,7 +76,7 @@ const getDashboardPage = async (req, res, next) => {
       return next(createError(401, 'User not found'));
     }
 
-    res.render('dashboard', { title: 'Nodepop - Dashboard', user });
+    res.render('dashboard', { title: res.__('Nodepop - Dashboard'), user });
   } catch (err) {
     return next(err);
   }
@@ -51,6 +86,8 @@ const createNewAdv = async (req, res, next) => {
   try {
     // console.log(req.body);
     // console.log(req.file);
+    // Declare client for make thumbnail service
+    const requester = new cote.Requester({ name: 'thumbnail client' });
 
     // Make a short description if there is
     if (req.body.description) {
@@ -68,10 +105,24 @@ const createNewAdv = async (req, res, next) => {
 
     await Advert.create(req.body);
 
+    // Before response, send image path to service
+    if (req.file) {
+      requester.send(
+        {
+          type: 'make thumbnail',
+          imagename: req.file.filename,
+          imagepath: req.file.path,
+        },
+        result => {
+          console.log(`New thumbnail at: ${result}`, Date.now());
+        }
+      );
+    }
+
     // console.log(newAdvert);
     res.status(201).redirect('/');
   } catch (err) {
-    next(createError(422, err));
+    res.render('newadvert', { title: res.__('Nodepop - New Advert'), err });
   }
 };
 

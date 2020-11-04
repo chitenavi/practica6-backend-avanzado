@@ -62,7 +62,7 @@ const login = async (req, res, next) => {
       token: tokenJWT,
     });
   } catch (err) {
-    next(createError(422, err));
+    next(createError(401, err));
   }
 };
 

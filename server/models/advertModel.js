@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const APIFeatures = require('../utils/apiFeatures');
+// const APIFeatures = require('../utils/apiFeatures');
 
 const advertSchema = new mongoose.Schema({
   name: {
@@ -44,16 +44,23 @@ const advertSchema = new mongoose.Schema({
   },
 });
 
-// TODO: No pasar query string al modelo, cada variable por separado
+// COMPLETE: No pasar query string al modelo, cada variable por separado
 
-advertSchema.statics.listAdverts = function (query, queryString) {
-  const features = new APIFeatures(query, queryString)
-    .filter()
-    .sort()
-    .limitFields()
-    .paginate();
+advertSchema.statics.listAdverts = function (
+  filterObj,
+  sortBy,
+  fields,
+  limit,
+  skip
+) {
+  const query = this.find(filterObj)
+    .collation({ locale: 'es' })
+    .sort(sortBy)
+    .select(fields)
+    .limit(limit)
+    .skip(skip);
 
-  return features.query;
+  return query;
 };
 
 const Advert = mongoose.model('Advert', advertSchema);

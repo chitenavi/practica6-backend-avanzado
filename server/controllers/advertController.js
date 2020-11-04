@@ -1,6 +1,8 @@
 const fs = require('fs');
 const createError = require('http-errors');
+const { createThumb, deleteThumb } = require('../utils/thumbFunctions');
 const Advert = require('../models/advertModel');
+const { getFilterObj } = require('../utils/apiFilter');
 
 /**
  * Generate API Documentation with apidoc
@@ -71,8 +73,38 @@ const Advert = require('../models/advertModel');
  */
 const getAllAdverts = async (req, res, next) => {
   try {
+    // ** FILTER
+    // Obtain filter object from query string
+    const filterObj = getFilterObj(req.query);
+
+    // ** SORT
+    // Order by one or more keys separated by commas
+    // if no sort, then we apply sort by create date by default
+    const sortBy = req.query.sort
+      ? req.query.sort.split(',').join(' ')
+      : 'createdAt';
+
+    // ** FIELDS
+    // return only the desired fields
+    // by default, return everything except __v field, use by moongose
+    const fields = req.query.fields
+      ? req.query.fields.split(',').join(' ')
+      : '-__v';
+
+    // ** PAGINATE
+    // Return 20 adverts by default
+    const start = req.query.start * 1 || 1;
+    const limit = req.query.limit * 1 || 20;
+    const skip = (start - 1) * limit;
+
     // Get adverts, apply filter, sort, limit fields or paginate if it exists
-    const adverts = await Advert.listAdverts(Advert.find(), req.query);
+    const adverts = await Advert.listAdverts(
+      filterObj,
+      sortBy,
+      fields,
+      limit,
+      skip
+    );
 
     // console.log(adverts);
     res.status(200).json({
@@ -226,6 +258,11 @@ const createAdvert = async (req, res, next) => {
 
     const newAdvert = await Advert.create(req.body);
 
+    // Before response, send image path to thumbnail service
+    if (req.file) {
+      createThumb(req.file.filename, req.file.path);
+    }
+
     res.status(201).json({
       status: 'success',
       requestedAt: req.requestTime,
@@ -300,6 +337,13 @@ const updateAdvertById = async (req, res, next) => {
       const adv = await Advert.findById(req.params.id);
       fs.unlinkSync(`public/img/adverts/${adv.image}`);
 
+      // Send previous image name to thumbnail service for delete
+      deleteThumb(adv.image);
+
+      // Send new image name to thumbnail service for create
+      createThumb(req.file.filename, req.file.path);
+
+      // Update parameter with image name
       req.body.image = req.file.filename;
     }
 
@@ -350,6 +394,9 @@ const deleteAdvertById = async (req, res, next) => {
 
     if (advert) {
       fs.unlinkSync(`public/img/adverts/${advert.image}`);
+
+      // Send image name to deleting thumbnail service
+      deleteThumb(advert.image);
     }
 
     // Second, delete advert from DB
