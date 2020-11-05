@@ -10,13 +10,14 @@
   },
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --recursive ./server/tests/*.test.js",
     "watch:dev": "nodemon",
     "start": "npm run prod",
     "server": "node ./server/bin/www",
     "dev": "cross-env NODE_ENV=development DEBUG=practica6-backend-avanzado:* npm run server",
     "prod": "cross-env NODE_ENV=production npm run server",
-    "initdb": "node ./server/dev-data/init-db"
+    "initdb": "node ./server/data/dev-data/init-db",
+    "devtest": "cross-env NODE_ENV=test DEBUG=practica6-backend-avanzado:* npm run server"
   },
   "nodemonConfig": {
     "exec": "npm run dev",
@@ -49,11 +50,15 @@
     "mongoose": "^5.10.0",
     "morgan": "~1.9.1",
     "multer": "^1.4.2",
+    "nodemailer": "^6.4.14",
+    "nodemailer-mailgun-transport": "^2.0.1",
     "nodemon": "^2.0.4",
+    "ssl-root-cas": "^1.3.1",
     "validator": "^13.1.17"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "chai": "^4.2.0",
     "eslint": "^7.7.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
@@ -62,6 +67,8 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.6",
-    "prettier": "^2.0.5"
+    "mocha": "^8.2.1",
+    "prettier": "^2.0.5",
+    "supertest": "^6.0.1"
   }
 }

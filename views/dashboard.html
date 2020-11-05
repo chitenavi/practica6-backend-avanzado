@@ -5,28 +5,42 @@
   <%- include('./templates/nav.html') -%>
 
   <header class="header">
-    <h1><%= __('Welcome ') %> <%= user.username %></h1>
+    <h1><%= __('Welcome your dashboard') %> <%= user.username.toUpperCase() %></h1>
   </header>
   <main class="main-dashboard">
    <section class="user-dashboard">
-      <h2><%= __('User panel') %></h2>
+      <h2>
+         <%= (user.rol === 'ADMIN') ? __('Admin panel') : __('User panel') %>
+      </h2>
       <div class="img-container">
          <img src="/img/users/<%= user.avatar %> " alt="<%= user.username %>">
       </div>
       
       <ul class="menu-dashboard">
-         <li class="menu-item">
-            <a href="#" class="button"><%= __('Your Account') %></a>
-         </li>
-         <li class="menu-item">
-            <a href="#" class="button"><%= __('Your Adverts') %></a>
-         </li>
-         <li class="menu-item">
-            <a href="#" class="button"><%= __('Your Sales') %></a>
-         </li>
-         <li class="menu-item">
-            <a href="#" class="button"><%= __('Your Shopping') %></a>
-         </li>
+         <% if (user.rol === 'ADMIN') { %>
+            <li class="menu-item">
+               <a href="#" class="button"><%= __('Admin Users') %></a>
+            </li>
+            <li class="menu-item">
+               <a href="#" class="button"><%= __('Admin Adverts') %></a>
+            </li>
+            <li class="menu-item">
+               <a href="#" class="button"><%= __('Statistics') %></a>
+            </li>
+         <% } else { %> 
+            <li class="menu-item">
+               <a href="#" class="button"><%= __('Your Account') %></a>
+            </li>
+            <li class="menu-item">
+               <a href="#" class="button"><%= __('Your Adverts') %></a>
+            </li>
+            <li class="menu-item">
+               <a href="#" class="button"><%= __('Your Sales') %></a>
+            </li>
+            <li class="menu-item">
+               <a href="#" class="button"><%= __('Your Shopping') %></a>
+            </li>
+         <% } %>
       </ul>
 
    </section>
