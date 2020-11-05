@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to API Nodepop 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-1.1.0-blue.svg?cacheSeconds=2592000" />
   <img src="https://img.shields.io/badge/node-%3E%3D10.22.0-blue.svg" />
   <a href="http://localhost:3000/apidoc/" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
@@ -10,19 +10,26 @@
   </a>
 </p>
 
+> Based on the project of the initial backend module, it has been added authentication, internationalization, background thumbnail image creation service and testing API.
+
+> Added user control to the API, creation, authentication with jwt, deletion, obtaining.
+
+> The thumbnail microservice receives the path of the created ad image, and creates 100x100px thumbnail in a folder inside adverts images folder.
+
 > API developed under Node and MongoDB of a service for buying and selling second-hand products. The service maintains advertisements, where you can control them using methods described in the documentation.
 >
-> The app deploys a front-end home page, where you can view an example sale web and also the API documentation. From here you can search, filter, sort and paginate the ads from form or address bar using parameters described in documentation. It is possible to create an ad aswell.
+> The app deploys a front-end home page, where you can view an example sale web and also the API documentation. From here you can search, filter, sort and paginate the ads from form or address bar using parameters described in documentation. You can log in, using the development parameters (user@example.com) and test the website, show private area, create a new ad, change language (spanish, english) with buttons.
 >
 > Everything is generated using the _express-generator_ module, with some changes in the file structure under the MVC architecture. Rendering views using _ejs_
 
-### 🏠 [Homepage](http://localhost:3000/ 'Default')
+### 🏠 [Homepage](https://localhost:3000/ 'Default')
 
-> By default, if you run the app on your computer, home page is http://localhost:3000. You can edit the port number you want.
+> By default, if you run the app on your computer, home page is https://localhost:3000. You can edit the port number you want.
 
 ## Prerequisites
 
 - node >=10.22.0
+- HTTPS for local development and production. Search for https://github.com/FiloSottile/mkcert to install locally-trusted development certificates and setup HTTPS (SSL) on your local development environment.
 
 ## API Documentation
 
@@ -66,6 +73,20 @@ Start the application in development mode, use _nodemon_ to monitor changes in t
 
 ```sh
 npm run watch:dev
+```
+
+## Test API (Adverts)
+
+If you want to test the API, first you have to start the app in _http mode_, not secure:
+
+```sh
+npm run devtest
+```
+
+And then execute tests:
+
+```sh
+npm test
 ```
 
 ## How to start a local mongodb instance for deveploment

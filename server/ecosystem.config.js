@@ -2,10 +2,10 @@ module.exports = {
   apps: [
     {
       name: 'nodepop',
-      script: './bin/www.js',
-      watch: './bin/www.js',
+      script: './server/bin/www.js',
+      watch: './server/bin/www.js',
       instances: 1,
-      log_file: 'logs/nodepop.log',
+      log_file: './server/logs/nodepop.log',
       log_date_format: 'YYYY-MM-DD HH:mm:ss',
       env: {
         NODE_ENV: 'development',
@@ -16,23 +16,11 @@ module.exports = {
     },
     {
       name: 'makethumbservice',
-      script: './services/makeThumbService.js',
+      script: './server/services/makeThumbService.js',
       instances: 1,
-      watch: './services/makeThumbService.js',
+      watch: './server/services/makeThumbService.js',
+      log_file: './server/logs/makeThumbService.log',
+      log_date_format: 'YYYY-MM-DD HH:mm:ss',
     },
   ],
-
-  deploy: {
-    production: {
-      user: 'SSH_USERNAME',
-      host: 'SSH_HOSTMACHINE',
-      ref: 'origin/master',
-      repo: 'GIT_REPOSITORY',
-      path: 'DESTINATION_PATH',
-      'pre-deploy-local': '',
-      'post-deploy':
-        'npm install && pm2 reload ecosystem.config.js --env production',
-      'pre-setup': '',
-    },
-  },
 };
