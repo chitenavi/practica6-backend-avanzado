@@ -1,30 +1,27 @@
 const express = require('express');
+const adminAuth = require('../../utils/adminAuth');
 const userController = require('../../controllers/userController');
-const authController = require('../../controllers/authController');
+const jwtAuth = require('../../utils/jwtAuth');
 
 const router = express.Router();
 
-router.post('/signup', authController.signup);
-router.post('/login', authController.login);
+router.post('/signup', jwtAuth(), adminAuth(), userController.signup);
+router.post('/authenticate', userController.authenticate);
 
 /**
  * GET users listing.
- * POST create user.
+ * Private, only admins
  */
-router
-  .route('/')
-  .get(userController.getAllUsers)
-  .post(userController.createUser);
+router.route('/').get(jwtAuth(), adminAuth(), userController.getAllUsers);
 
 /**
  * GET user (:id)
- * PATCH update user (:id)
  * DELETE delete user (:id)
+ * Private, only admins
  */
 router
   .route('/:id')
-  .get(userController.getUserById)
-  .patch(userController.updateUserById)
-  .delete(userController.deleteUserById);
+  .get(jwtAuth(), adminAuth(), userController.getUserById)
+  .delete(jwtAuth(), adminAuth(), userController.deleteUserById);
 
 module.exports = router;

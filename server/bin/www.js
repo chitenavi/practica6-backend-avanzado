@@ -8,7 +8,7 @@ const fs = require('fs');
 
 const mongoose = require('mongoose');
 const debug = require('debug')('practica6-backend-avanzado:server');
-// const http = require('http');
+const http = require('http');
 const https = require('https');
 const app = require('../app');
 
@@ -52,10 +52,11 @@ function normalizePort(val) {
 /**
  * Create HTTP server.
  */
-
-// const server = http.createServer(app);
-const server = https.createServer(options, app);
-
+// For test application, use http
+const server =
+  process.env.NODE_ENV === 'test'
+    ? http.createServer(app)
+    : https.createServer(options, app);
 /**
  * Get port from environment and store in Express.
  */

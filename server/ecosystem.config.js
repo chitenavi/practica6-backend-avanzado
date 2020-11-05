@@ -4,6 +4,7 @@ module.exports = {
       name: 'nodepop',
       script: './bin/www.js',
       watch: './bin/www.js',
+      instances: 1,
       log_file: 'logs/nodepop.log',
       log_date_format: 'YYYY-MM-DD HH:mm:ss',
       env: {
@@ -15,9 +16,9 @@ module.exports = {
     },
     {
       name: 'makethumbservice',
-      script: './makeThumbService.js',
+      script: './services/makeThumbService.js',
       instances: 1,
-      watch: './makeThumbService.js',
+      watch: './services/makeThumbService.js',
     },
   ],
 

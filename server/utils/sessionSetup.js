@@ -8,8 +8,8 @@ module.exports = function (mongoConnection) {
     saveUninitialized: true,
     resave: false,
     cookie: {
-      secure: true, // el browser solo la manda al servidor si usa HTTPS
-      maxAge: 1000 * 60 * 60 * 24 * 2, // 2 dias de caducidad por inactividad
+      secure: true,
+      maxAge: 1000 * 60 * 60 * 24 * 2, // 2 days
     },
     store: new MongoStore({
       mongooseConnection: mongoConnection,

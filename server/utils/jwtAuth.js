@@ -4,9 +4,7 @@ const createError = require('http-errors');
 module.exports = function () {
   return (req, res, next) => {
     // check if we receive a header parameter Authorization
-    // with a valid JWT
-
-    // get the token from header, body or query string
+    // with a valid JWT // get the token from header, body or query string
     const tokenJWT =
       req.get('Authorization') || req.query.token || req.body.token;
 
@@ -19,7 +17,7 @@ module.exports = function () {
     jwt.verify(tokenJWT, process.env.JWT_SECRET, (err, payload) => {
       // if TokenExpiredError or JsonWebTokenError or NotBeforeError
       if (err) return next(createError(401, err.message));
-      req.apiAuthUserId = payload._id;
+      req.apiAuthUserId = payload.id;
       next();
     });
   };

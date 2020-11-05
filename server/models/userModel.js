@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcrypt');
+const nodemailerTransport = require('../utils/nodemailerSetup');
 
 const userSchema = new mongoose.Schema(
   {
@@ -23,7 +24,18 @@ const userSchema = new mongoose.Schema(
       minlength: 4,
       select: false,
     },
-    avatar: String,
+    rol: {
+      type: String,
+      default: 'USER',
+      enum: {
+        values: ['USER', 'ADMIN'],
+        message: '{VALUE} it is not a valid rol',
+      },
+    },
+    avatar: {
+      type: String,
+      default: 'avatar-default.png',
+    },
   },
   { timestamps: true }
 );
@@ -39,6 +51,15 @@ userSchema.methods.comparePasswords = async function (
   return await bcrypt.compare(tryPassword, userPassword);
 };
 
+userSchema.methods.sendMail = function (from, subject, body) {
+  // Send email
+  return nodemailerTransport.sendMail({
+    from: from,
+    to: this.email,
+    subject: subject,
+    html: body,
+  });
+};
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
