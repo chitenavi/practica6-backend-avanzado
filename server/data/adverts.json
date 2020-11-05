@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Bicicleta",
+    "sale": true,
+    "price": 230.15,
+    "tinyDescription": "Ut enim ad minim veniam, quis nostrud exercitation ullamco...",
+    "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "bici.jpg",
+    "tags": ["lifestyle", "motor"]
+  },
+  {
+    "name": "iPhone 10",
+    "sale": false,
+    "price": 270,
+    "tinyDescription": "Ut enim ad minim veniam, quis nostrud exercitation ullamco...",
+    "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "iphone.png",
+    "tags": ["lifestyle", "mobile"]
+  },
+  {
+    "name": "Casco Moto",
+    "sale": true,
+    "price": 45,
+    "tinyDescription": "Ut enim ad minim veniam, quis nostrud exercitation ullamco...",
+    "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "casco.jpg",
+    "tags": ["lifestyle", "motor"]
+  },
+  {
+    "name": "Portatil i7",
+    "sale": true,
+    "price": 420,
+    "tinyDescription": "Ut enim ad minim veniam, quis nostrud exercitation ullamco...",
+    "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "portatili7.jpg",
+    "tags": ["lifestyle", "mobile", "work"]
+  },
+  {
+    "name": "Taladro Bosch",
+    "sale": false,
+    "price": 110,
+    "tinyDescription": "Ut enim ad minim veniam, quis nostrud exercitation ullamco...",
+    "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "taladro.jpg",
+    "tags": ["work"]
+  },
+  {
+    "name": "Tabla de Snow",
+    "sale": true,
+    "price": 140,
+    "tinyDescription": "Ut enim ad minim veniam, quis nostrud exercitation ullamco...",
+    "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "tablasnow.jpg",
+    "tags": ["lifestyle"]
+  },
+  {
+    "name": "Golf IV TDI",
+    "sale": true,
+    "price": 4500,
+    "tinyDescription": "Ut enim ad minim veniam, quis nostrud exercitation ullamco...",
+    "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "golfivtdi.jpg",
+    "tags": ["lifestyle", "motor"]
+  },
+  {
+    "name": "Galaxy Tab 10.1 pulgadas",
+    "sale": false,
+    "price": 100,
+    "tinyDescription": "Ut enim ad minim veniam, quis nostrud exercitation ullamco...",
+    "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "galaxytab.jpg",
+    "tags": ["lifestyle", "mobile"]
+  }
+]
