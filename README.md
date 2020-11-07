@@ -10,6 +10,12 @@
   </a>
 </p>
 
+<h2 align="left">Public module created for practice:
+<a href="https://www.npmjs.com/package/cadena-romano-a-decimal" target="_blank">
+    <img alt="npm: cadena-romano-a-decimal" src="https://img.shields.io/badge/npm-cadena--romano--a--decimal-red" />
+  </a>
+</h2>
+
 > Based on the project of the initial backend module, it has been added authentication, internationalization, background thumbnail image creation service and testing API.
 
 > Added user control to the API, creation, authentication with jwt, deletion, obtaining.
