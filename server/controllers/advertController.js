@@ -273,6 +273,7 @@ const createAdvert = async (req, res, next) => {
   } catch (err) {
     if (req.file) {
       fs.unlinkSync(`public/img/adverts/${req.file.filename}`);
+      deleteThumb(req.file.filename);
     }
     next(createError(422, err));
   }
@@ -362,6 +363,7 @@ const updateAdvertById = async (req, res, next) => {
     });
   } catch (err) {
     if (req.file) {
+      deleteThumb(req.file.filename);
       fs.unlinkSync(`public/img/adverts/${req.file.filename}`);
     }
     next(createError(422, err));

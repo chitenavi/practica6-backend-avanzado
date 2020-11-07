@@ -26,7 +26,7 @@ class LoginController {
       // and show the errors
 
       if (!user || !(await user.comparePasswords(password, user.password))) {
-        res.locals.error = 'Invalid credentials';
+        res.locals.error = res.__('Invalid credentials');
         res.locals.email = email;
         res.render('login', { title: 'Nodepop - Login' });
         return;
@@ -37,18 +37,6 @@ class LoginController {
         _id: user._id,
         // rol: ...
       };
-
-      // enviar email
-      // expresamente no ponemos await para no esperar a que se mande el email antes de redirigir
-      // usuario.sendMail(process.env.ADMIN_EMAIL, 'Bienvenido a NodeApi', `Hola <%= nombre %>`);
-
-      /*
-      await usuario.enqueueNewEmail(
-        process.env.ADMIN_EMAIL,
-        'Bienvenido a NodeApi',
-        `Hola <%= nombre %>`
-      );
-      */
 
       // redirect to user dashboard
       // console.log(`${user.username} logged successfully!`);

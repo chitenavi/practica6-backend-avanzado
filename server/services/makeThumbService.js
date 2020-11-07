@@ -28,7 +28,7 @@ responder.on('make thumbnail', async (req, done) => {
     );
     console.log(`Service: creating thumbnail ...`);
 
-    await (await Jimp.read(path.join('..', '..', req.imagepath)))
+    await (await Jimp.read(path.join(__dirname, '..', '..', req.imagepath)))
       .resize(100, 100)
       .write(`${thumbDirPath}${thumbName}`);
 

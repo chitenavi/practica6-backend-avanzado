@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcrypt');
-// const nodemailerTransport = require('../utils/nodemailerSetup');
+const nodemailerTransport = require('../utils/nodemailerSetup');
 
 const userSchema = new mongoose.Schema(
   {

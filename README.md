@@ -30,10 +30,11 @@
 
 - node >=10.22.0
 - HTTPS for local development and production. Search for https://github.com/FiloSottile/mkcert to install locally-trusted development certificates and setup HTTPS (SSL) on your local development environment.
+- PM2 installed globally (https://www.npmjs.com/package/pm2)
 
 ## API Documentation
 
-You can see all the API documentation at http://localhost:3000/apidoc/ (default path) when you start the application.
+You can see all the API documentation at https://localhost:3000/apidoc/ (default path) when you start the application.
 
 ## Install
 
@@ -53,7 +54,7 @@ cp .env.example .env
 
 **Warning! this script delete database contents before load.**
 Use in production only at first deployment.
-You can load initial data to database with next command:
+You can load initial data and users, configure .env file for add admin and dev user data, then run (mandatory for first use):
 
 ```sh
 npm run initdb
@@ -64,26 +65,26 @@ npm run initdb
 Start the application in production:
 
 ```sh
-npm run start
+npm run pm2
 ```
 
 ## Development start
 
-Start the application in development mode, use _nodemon_ to monitor changes in the code:
+Start the application in development mode, pm2 watch any changes on code and show logs:
 
 ```sh
-npm run watch:dev
+npm run pm2dev
 ```
 
 ## Test API (Adverts)
 
-If you want to test the API, first you have to start the app in _http mode_, not secure:
+If you want to test the API, first you have to start the app in test mode (_http mode_):
 
 ```sh
 npm run devtest
 ```
 
-And then execute tests:
+And then, pass the tests in another terminal:
 
 ```sh
 npm test

@@ -60,5 +60,6 @@
 	"Welcome your dashboard": "Welcome your dashboard",
 	"Admin Users": "Admin Users",
 	"Admin Adverts": "Admin Adverts",
-	"Statistics": "Statistics"
+	"Statistics": "Statistics",
+	"Invalid credentials": "Invalid credentials"
 }

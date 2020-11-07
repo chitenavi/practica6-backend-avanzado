@@ -1,7 +1,8 @@
 const createError = require('http-errors');
-const cote = require('cote');
+const fs = require('fs');
 const Advert = require('../models/advertModel');
 const User = require('../models/userModel');
+const { createThumb, deleteThumb } = require('../utils/thumbFunctions');
 const { getFilterObj } = require('../utils/apiFilter');
 
 const getHomePage = async (req, res, next) => {
@@ -86,8 +87,6 @@ const createNewAdv = async (req, res, next) => {
   try {
     // console.log(req.body);
     // console.log(req.file);
-    // Declare client for make thumbnail service
-    const requester = new cote.Requester({ name: 'thumbnail client' });
 
     // Make a short description if there is
     if (req.body.description) {
@@ -105,23 +104,18 @@ const createNewAdv = async (req, res, next) => {
 
     await Advert.create(req.body);
 
-    // Before response, send image path to service
+    // Before response, send image path to thumbnail service
     if (req.file) {
-      requester.send(
-        {
-          type: 'make thumbnail',
-          imagename: req.file.filename,
-          imagepath: req.file.path,
-        },
-        result => {
-          console.log(`New thumbnail at: ${result}`, Date.now());
-        }
-      );
+      createThumb(req.file.filename, req.file.path);
     }
 
     // console.log(newAdvert);
     res.status(201).redirect('/');
   } catch (err) {
+    if (req.file) {
+      fs.unlinkSync(`public/img/adverts/${req.file.filename}`);
+      deleteThumb(req.file.filename);
+    }
     res.render('newadvert', { title: res.__('Nodepop - New Advert'), err });
   }
 };

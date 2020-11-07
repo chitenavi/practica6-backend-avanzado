@@ -111,9 +111,12 @@ const authenticate = async (req, res, next) => {
 
     // if no user or pass is diferent redirect to login
     // and show the errors
-    if (!user || !(await user.comparePasswords(password, user.password))) {
+    if (!user) {
       // respond to API client with json error
-      return next(createError(401, 'Invalid credentials'));
+      return next(createError(401, 'User not registered!!'));
+    }
+    if (!(await user.comparePasswords(password, user.password))) {
+      return next(createError(401, 'Invalid password!!'));
     }
 
     //console.log(user);

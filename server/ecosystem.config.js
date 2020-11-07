@@ -3,7 +3,11 @@ module.exports = {
     {
       name: 'nodepop',
       script: './server/bin/www.js',
-      watch: './server/bin/www.js',
+      watch: ['server'],
+      ignore_watch: ['server/services', 'server/logs', 'server/data'],
+      watch_options: {
+        followSymlinks: false,
+      },
       instances: 1,
       log_file: './server/logs/nodepop.log',
       log_date_format: 'YYYY-MM-DD HH:mm:ss',
@@ -12,6 +16,7 @@ module.exports = {
       },
       env_production: {
         NODE_ENV: 'production',
+        watch: false,
       },
     },
     {

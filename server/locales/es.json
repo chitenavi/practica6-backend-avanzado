@@ -58,5 +58,6 @@
   "Welcome your dashboard": "Bienvenido al tablero de opciones",
   "Admin Users": "Administrar Usuarios",
   "Admin Adverts": "Administrar Anuncios",
-  "Statistics": "Estadísticas"
+  "Statistics": "Estadísticas",
+  "Invalid credentials": "Credenciales no válidas"
 }

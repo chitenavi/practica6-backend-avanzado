@@ -16,6 +16,7 @@ module.exports = function () {
     // verify the received token
     jwt.verify(tokenJWT, process.env.JWT_SECRET, (err, payload) => {
       // if TokenExpiredError or JsonWebTokenError or NotBeforeError
+      // return 401 error with message
       if (err) return next(createError(401, err.message));
       req.apiAuthUserId = payload.id;
       next();
