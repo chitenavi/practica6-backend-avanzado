@@ -31,7 +31,7 @@ describe('GET /adverts', () => {
       });
 
     expect(authResponse.status).to.eql(401);
-    expect(authResponse.body.message).to.eql('Invalid credentials');
+    expect(authResponse.body.message).to.eql('User not registered!!');
   });
 
   it('authenticate and get all adverts', async () => {
