@@ -82,7 +82,7 @@ Start the application in development mode, pm2 watch any changes on code and sho
 npm run pm2dev
 ```
 
-## Stop aplication and services
+## Stop application and services
 
 ```sh
 npm run pm2kill
