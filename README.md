@@ -12,7 +12,7 @@
 
 <h3 align="center">Public module created for practice:
 <a href="https://www.npmjs.com/package/cadena-romano-a-decimal" target="_blank">
-    <img alt="npm: cadena-romano-a-decimal" src="https://img.shields.io/badge/npm-cadena--romano--a--decimal-red" />
+    <img alt="npm: cadena-romano-a-decimal" src="https://img.shields.io/badge/npm-cadena--romano--a--decimal-red.svg" />
   </a>
 </h3>
 
@@ -80,6 +80,12 @@ Start the application in development mode, pm2 watch any changes on code and sho
 
 ```sh
 npm run pm2dev
+```
+
+## Stop aplication and services
+
+```sh
+npm run pm2kill
 ```
 
 ## Test API (Adverts)

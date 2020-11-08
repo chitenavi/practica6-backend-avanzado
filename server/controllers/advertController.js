@@ -9,11 +9,13 @@ const { getFilterObj } = require('../utils/apiFilter');
  */
 
 /**
- * @api {get} /api/v1/adverts 1.List all adverts
+ * @api {get} /api/v1/adverts 1.List all adverts (requires auth token)
  * @apiName GetAllAdverts
  * @apiGroup Adverts
  *
  * @apiDescription Get all the ads, and you can filter according to the arguments described
+ *
+ * @apiParam {String} token Token jwt authorization
  *
  * @apiExample Example usage:
  * curl -i http://localhost/api/v1/adverts
@@ -121,7 +123,7 @@ const getAllAdverts = async (req, res, next) => {
 };
 
 /**
- * @api {get} /api/v1/adverts/:id 2.Find an advert
+ * @api {get} /api/v1/adverts/:id 2.Find an advert (requires auth token)
  * @apiName GetAdvert
  * @apiGroup Adverts
  *
@@ -130,6 +132,7 @@ const getAllAdverts = async (req, res, next) => {
  * @apiExample Example usage:
  * curl -i http://localhost/api/v1/adverts/5f59fc8f53bab60f7d995367
  *
+ * @apiParam {String} token Token jwt authorization
  * @apiParam {id} id Advert id
  * @apiSuccess {String} status Status response
  * @apiSuccess {Date} requestedAt Request date/time
@@ -184,11 +187,12 @@ const getAdvertById = async (req, res, next) => {
 };
 
 /**
- * @api {post} /api/v1/adverts/ 3.Create an advert
+ * @api {post} /api/v1/adverts/ 3.Create an advert (requires auth token)
  * @apiName PostAdvert
  * @apiGroup Adverts
  * @apiDescription Create one advert, content in the body (form-data)
  *
+ * @apiParam {String} token Token jwt authorization
  * @apiParam {file} image Advert file image (jpg/png)
  * @apiParam {String} name Advert name
  * @apiParam {Number} price Advert price
@@ -280,12 +284,13 @@ const createAdvert = async (req, res, next) => {
 };
 
 /**
- * @api {put} /api/v1/adverts/:id 4.Update an advert
+ * @api {put} /api/v1/adverts/:id 4.Update an advert (requires auth token)
  * @apiName PutAdvert
  * @apiGroup Adverts
  *
  * @apiDescription Update one advert by id param
  *
+ * @apiParam {String} token Token jwt authorization
  * @apiParam {id} id Advert id
  * @apiParam {String} name Advert name
  * @apiParam {Number} price Advert price
@@ -371,10 +376,11 @@ const updateAdvertById = async (req, res, next) => {
 };
 
 /**
- * @api {delete} /api/v1/adverts/:id 5.Delete an advert
+ * @api {delete} /api/v1/adverts/:id 5.Delete an advert (requires auth token)
  * @apiName DeleteAdvert
  * @apiGroup Adverts
  *
+ * @apiParam {String} token Token jwt authorization
  * @apiDescription Delete one advert by id param
  *
  * @apiParam {id} id Advert id
@@ -414,7 +420,7 @@ const deleteAdvertById = async (req, res, next) => {
 };
 
 /**
- * @api {get} /api/v1/adverts/tags/ 6.Find all exist tags
+ * @api {get} /api/v1/adverts/tags/ 6.Find all exist tags (requires auth token)
  * @apiName GetAllTags
  * @apiGroup Adverts
  *
@@ -423,6 +429,7 @@ const deleteAdvertById = async (req, res, next) => {
  * @apiExample Example usage:
  * curl -i http://localhost/api/v1/adverts/tags
  *
+ * @apiParam {String} token Token jwt authorization
  * @apiSuccess {String} status Status response
  * @apiSuccess {Date} requestedAt Request date/time
  * @apiSuccess {Object} data Data response

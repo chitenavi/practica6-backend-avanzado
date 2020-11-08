@@ -2,13 +2,19 @@ define({ "api": [
   {
     "type": "delete",
     "url": "/api/v1/adverts/:id",
-    "title": "5.Delete an advert",
+    "title": "5.Delete an advert (requires auth token)",
     "name": "DeleteAdvert",
     "group": "Adverts",
-    "description": "<p>Delete one advert by id param</p>",
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token jwt authorization</p>"
+          },
           {
             "group": "Parameter",
             "type": "id",
@@ -19,6 +25,7 @@ define({ "api": [
         ]
       }
     },
+    "description": "<p>Delete one advert by id param</p>",
     "success": {
       "examples": [
         {
@@ -44,7 +51,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/api/v1/adverts/:id",
-    "title": "2.Find an advert",
+    "title": "2.Find an advert (requires auth token)",
     "name": "GetAdvert",
     "group": "Adverts",
     "description": "<p>Get one advert by id param</p>",
@@ -58,6 +65,13 @@ define({ "api": [
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token jwt authorization</p>"
+          },
           {
             "group": "Parameter",
             "type": "id",
@@ -125,10 +139,23 @@ define({ "api": [
   {
     "type": "get",
     "url": "/api/v1/adverts",
-    "title": "1.List all adverts",
+    "title": "1.List all adverts (requires auth token)",
     "name": "GetAllAdverts",
     "group": "Adverts",
     "description": "<p>Get all the ads, and you can filter according to the arguments described</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token jwt authorization</p>"
+          }
+        ]
+      }
+    },
     "examples": [
       {
         "title": "Example usage:",
@@ -205,7 +232,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/api/v1/adverts/tags/",
-    "title": "6.Find all exist tags",
+    "title": "6.Find all exist tags (requires auth token)",
     "name": "GetAllTags",
     "group": "Adverts",
     "description": "<p>Get all exist tags in th DB</p>",
@@ -216,6 +243,19 @@ define({ "api": [
         "type": "json"
       }
     ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token jwt authorization</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
@@ -273,13 +313,20 @@ define({ "api": [
   {
     "type": "post",
     "url": "/api/v1/adverts/",
-    "title": "3.Create an advert",
+    "title": "3.Create an advert (requires auth token)",
     "name": "PostAdvert",
     "group": "Adverts",
     "description": "<p>Create one advert, content in the body (form-data)</p>",
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token jwt authorization</p>"
+          },
           {
             "group": "Parameter",
             "type": "file",
@@ -389,13 +436,20 @@ define({ "api": [
   {
     "type": "put",
     "url": "/api/v1/adverts/:id",
-    "title": "4.Update an advert",
+    "title": "4.Update an advert (requires auth token)",
     "name": "PutAdvert",
     "group": "Adverts",
     "description": "<p>Update one advert by id param</p>",
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token jwt authorization</p>"
+          },
           {
             "group": "Parameter",
             "type": "id",
@@ -480,5 +534,404 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "./server/controllers/advertController.js",
     "groupTitle": "Adverts"
+  },
+  {
+    "type": "post",
+    "url": "/api/v1/users/authenticate",
+    "title": "1.Authenticate user API",
+    "name": "Authenticate",
+    "group": "Users",
+    "description": "<p>Authenticate user in API. Content in body, return token JWT</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User password</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status response</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token jwt</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "\nHTTP/1.1 200 OK\n   {\n     \"status\": \"success\",\n     \"token\": \"eyJhbGciOiJzI1NsInR5cCI6IkpXVCJ9.eyJpZCIVmYTcwYjVhYWMzMzA5MWU0YjUxIjo4xWN7tJgLrvNha58f6Y7UJKL7_HFkkGpY\"\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n  \"status\": \"fail\",\n  \"code\": 401,\n  \"message\": \"User not registered!!\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./server/controllers/userController.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "delete",
+    "url": "/api/v1/users/:id",
+    "title": "5.Delete user API (requires auth token)",
+    "name": "DeleteUserById",
+    "group": "Users",
+    "description": "<p>Delete user by ID. Only Admins. Require Auth token</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token jwt authorization</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>User id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "HTTP/1.1 204 No Content",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error: Invalid id",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"status\": \"fail\",\n  \"code\": 404,\n  \"message\": \"Cast to ObjectId failed for value \\\"5fa73747d7d93d9be3e5f3\\\" at path \\\"_id\\\" for model \\\"User\\\"\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error: No token",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n  \"status\": \"fail\",\n  \"code\": 401,\n  \"message\": \"No token provided\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./server/controllers/userController.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/users",
+    "title": "2.List all users (requires auth token)",
+    "name": "GetAllUsers",
+    "group": "Users",
+    "description": "<p>Get all the users in DB. Only admins. Require Auth token</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token jwt authorization</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status response</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "requestedAt",
+            "description": "<p>Request date/time</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "results",
+            "description": "<p>Number of users</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "data",
+            "description": "<p>Data response</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "data.users",
+            "description": "<p>Users's list</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "\nHTTP/1.1 200 OK\n   {\n     \"status\": \"success\",\n     \"requestedAt\": \"2020-09-10T10:55:52.067Z\",\n     \"results\": 2,\n     \"data\": {\n     \"users\": [\n          {\n              \"rol\": \"USER\",\n              \"avatar\": \"avatar-default.png\",\n              \"_id\": \"5fa70b5aac33091e4b51d809\",\n              \"username\": \"devnodepopuser\",\n              \"email\": \"user@example.com\",\n              \"__v\": 0,\n              \"createdAt\": \"2020-11-07T21:02:18.809Z\",\n              \"updatedAt\": \"2020-11-07T21:02:18.809Z\"\n          }, ...\n        ]\n     }\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n  \"status\": \"fail\",\n  \"code\": 401,\n  \"message\": \"No token provided\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./server/controllers/userController.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "/api/v1/users/:id",
+    "title": "3.Get a user data (requires auth token)",
+    "name": "GetUserById",
+    "group": "Users",
+    "description": "<p>Get one user by id param. Only admins. Require auth</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token jwt authorization</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "id",
+            "optional": false,
+            "field": "id",
+            "description": "<p>User id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status response</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "requestedAt",
+            "description": "<p>Request date/time</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "data",
+            "description": "<p>Data response</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "data.user",
+            "description": "<p>User data</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "  HTTP/1.1 200 OK\n  {\n    \"status\": \"success\",\n    \"requestedAt\": \"2020-09-10T10:55:52.067Z\",\n    \"results\": 8,\n    \"data\": {\n        \"user\": {\n         \"rol\": \"USER\",\n         \"avatar\": \"avatar-default.png\",\n         \"_id\": \"5fa70b5aac33091e4b51d809\",\n         \"username\": \"devnodepopuser\",\n         \"email\": \"user@example.com\",\n         \"__v\": 0,\n         \"createdAt\": \"2020-11-07T21:02:18.809Z\",\n+           \"updatedAt\": \"2020-11-07T21:02:18.809Z\"\n+          }\n     }\n  }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n  \"status\": \"fail\",\n  \"code\": 401,\n  \"message\": \"No token provided\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./server/controllers/userController.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "post",
+    "url": "/api/v1/users/",
+    "title": "4.Create a new user (requires auth token)",
+    "name": "Signup",
+    "group": "Users",
+    "description": "<p>Create a new user in DB. Only admins can create admin users. Require Auth token</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token jwt authorization</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>User name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "avatar",
+            "description": "<p>User avatar. Default user-avatar</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "rol",
+            "description": "<p>User rol. ADMIN or USER. Default USER</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Input",
+          "content": "{\n  \"username\": \"paco\",\n  \"email\": \"prueba@hola.com\",\n  \"password\": 1234\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status response</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>Token jwt</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "data",
+            "description": "<p>Data response</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "data.user",
+            "description": "<p>New user created</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success",
+          "content": "\nHTTP/1.1 201 OK\n   {\n     \"status\": \"success\",\n     \"token\": \"eyJhbGciOiJzI1NsInR5cCI6IkpXVCJ9.eyJpZCIVmYTcwYjVhYWMzMzA5MWU0YjUxIjo4xWN7tJgLrvNha58f6Y7UJKL7_HFkkGpY\"\n     \"data\": {\n        \"user\": { ... }\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "List error",
+          "content": "HTTP/1.1 422 Unauthorized\n{\n  \"status\": \"fail\",\n  \"code\": 422,\n  \"message\": \"User validation failed: username: Please add a username\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./server/controllers/userController.js",
+    "groupTitle": "Users"
   }
 ] });

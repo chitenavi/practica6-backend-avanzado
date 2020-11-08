@@ -8,6 +8,52 @@ const signToken = id => {
   });
 };
 
+/**
+ * @api {get} /api/v1/users 2.List all users (requires auth token)
+ * @apiName GetAllUsers
+ * @apiGroup Users
+ *
+ * @apiDescription Get all the users in DB. Only admins. Require Auth token
+ *
+ * @apiParam {String} token Token jwt authorization
+ *
+ * @apiSuccess {String} status Status response
+ * @apiSuccess {Date} requestedAt Request date/time
+ * @apiSuccess {Number} results Number of users
+ * @apiSuccess {Object} data Data response
+ * @apiSuccess {Object[]} data.users Users's list
+ * @apiSuccessExample {json} Success
+ *
+ * HTTP/1.1 200 OK
+ *    {
+ *      "status": "success",
+ *      "requestedAt": "2020-09-10T10:55:52.067Z",
+ *      "results": 2,
+ *      "data": {
+ *      "users": [
+ *           {
+ *               "rol": "USER",
+ *               "avatar": "avatar-default.png",
+ *               "_id": "5fa70b5aac33091e4b51d809",
+ *               "username": "devnodepopuser",
+ *               "email": "user@example.com",
+ *               "__v": 0,
+ *               "createdAt": "2020-11-07T21:02:18.809Z",
+ *               "updatedAt": "2020-11-07T21:02:18.809Z"
+ *           }, ...
+ *         ]
+ *      }
+ *    }
+ *
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 401 Unauthorized
+ *    {
+ *      "status": "fail",
+ *      "code": 401,
+ *      "message": "No token provided"
+ *    }
+ */
+
 const getAllUsers = async (req, res, next) => {
   try {
     if (!req.adminAuth) {
@@ -29,6 +75,47 @@ const getAllUsers = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {get} /api/v1/users/:id 3.Get a user data (requires auth token)
+ * @apiName GetUserById
+ * @apiGroup Users
+ *
+ * @apiDescription Get one user by id param. Only admins. Require auth
+ *
+ * @apiParam {String} token Token jwt authorization
+ * @apiParam {id} id User id
+ * @apiSuccess {String} status Status response
+ * @apiSuccess {Date} requestedAt Request date/time
+ * @apiSuccess {Object} data Data response
+ * @apiSuccess {Object} data.user User data
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 200 OK
+ *    {
+ *      "status": "success",
+ *      "requestedAt": "2020-09-10T10:55:52.067Z",
+ *      "results": 8,
+ *      "data": {
+ *          "user": {
+ *           "rol": "USER",
+ *           "avatar": "avatar-default.png",
+ *           "_id": "5fa70b5aac33091e4b51d809",
+ *           "username": "devnodepopuser",
+ *           "email": "user@example.com",
+ *           "__v": 0,
+ *           "createdAt": "2020-11-07T21:02:18.809Z",
+ +           "updatedAt": "2020-11-07T21:02:18.809Z"
+ +          }
+ *       }
+ *    }
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 401 Unauthorized
+ *    {
+ *      "status": "fail",
+ *      "code": 401,
+ *      "message": "No token provided"
+ *    }
+ */
+
 const getUserById = async (req, res, next) => {
   try {
     if (!req.adminAuth) {
@@ -49,6 +136,50 @@ const getUserById = async (req, res, next) => {
   }
 };
 
+/**
+ * @api {post} /api/v1/users/ 4.Create a new user (requires auth token)
+ * @apiName Signup
+ * @apiGroup Users
+ *
+ * @apiDescription Create a new user in DB. Only admins can create admin users. Require Auth token
+ *
+ * @apiParam {String} token Token jwt authorization
+ * @apiParam {String} username User name
+ * @apiParam {String} email User email
+ * @apiParam {String} password User password
+ * @apiParam {String} avatar User avatar. Default user-avatar
+ * @apiParam {String} rol User rol. ADMIN or USER. Default USER
+ *
+ * @apiParamExample {json} Input
+ *    {
+ *      "username": "paco",
+ *      "email": "prueba@hola.com",
+ *      "password": 1234
+ *    }
+ *
+ * @apiSuccess {String} status Status response
+ * @apiSuccess {String} token Token jwt
+ * @apiSuccess {Object} data Data response
+ * @apiSuccess {Object[]} data.user New user created
+ * @apiSuccessExample {json} Success
+ *
+ * HTTP/1.1 201 OK
+ *    {
+ *      "status": "success",
+ *      "token": "eyJhbGciOiJzI1NsInR5cCI6IkpXVCJ9.eyJpZCIVmYTcwYjVhYWMzMzA5MWU0YjUxIjo4xWN7tJgLrvNha58f6Y7UJKL7_HFkkGpY"
+ *      "data": {
+ *         "user": { ... }
+ *    }
+ *
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 422 Unauthorized
+ *    {
+ *      "status": "fail",
+ *      "code": 422,
+ *      "message": "User validation failed: username: Please add a username"
+ *    }
+ */
+
 const signup = async (req, res, next) => {
   try {
     // console.log('Admin:', req.adminAuth);
@@ -68,7 +199,7 @@ const signup = async (req, res, next) => {
 
     const tokenJWT = signToken(newUser._id);
 
-    // send a mail to new user
+    // send a mail to new registered user
 
     /*
     newUser.sendMail(
@@ -96,6 +227,35 @@ const signup = async (req, res, next) => {
     next(createError(422, err));
   }
 };
+
+/**
+ * @api {post} /api/v1/users/authenticate 1.Authenticate user API
+ * @apiName Authenticate
+ * @apiGroup Users
+ *
+ * @apiDescription Authenticate user in API. Content in body, return token JWT
+ *
+ * @apiParam {String} email User email
+ * @apiParam {String} password User password
+ *
+ * @apiSuccess {String} status Status response
+ * @apiSuccess {String} token Token jwt
+ * @apiSuccessExample {json} Success
+ *
+ * HTTP/1.1 200 OK
+ *    {
+ *      "status": "success",
+ *      "token": "eyJhbGciOiJzI1NsInR5cCI6IkpXVCJ9.eyJpZCIVmYTcwYjVhYWMzMzA5MWU0YjUxIjo4xWN7tJgLrvNha58f6Y7UJKL7_HFkkGpY"
+ *    }
+ *
+ * @apiErrorExample {json} List error
+ *    HTTP/1.1 401 Unauthorized
+ *    {
+ *      "status": "fail",
+ *      "code": 401,
+ *      "message": "User not registered!!"
+ *    }
+ */
 
 const authenticate = async (req, res, next) => {
   try {
@@ -131,6 +291,34 @@ const authenticate = async (req, res, next) => {
     next(createError(401, err));
   }
 };
+
+/**
+ * @api {delete} /api/v1/users/:id 5.Delete user API (requires auth token)
+ * @apiName DeleteUserById
+ * @apiGroup Users
+ *
+ * @apiDescription Delete user by ID. Only Admins. Require Auth token
+ *
+ * @apiParam {String} token Token jwt authorization
+ * @apiParam {String} id User id
+ *
+ * @apiSuccessExample {json} Success
+ *    HTTP/1.1 204 No Content
+ * @apiErrorExample {json} Error: Invalid id
+ *    HTTP/1.1 404 Not Found
+ *    {
+ *      "status": "fail",
+ *      "code": 404,
+ *      "message": "Cast to ObjectId failed for value \"5fa73747d7d93d9be3e5f3\" at path \"_id\" for model \"User\""
+ *    }
+ * @apiErrorExample {json} Error: No token
+ *    HTTP/1.1 401 Unauthorized
+ *    {
+ *      "status": "fail",
+ *      "code": 401,
+ *      "message": "No token provided"
+ *    }
+ */
 
 const deleteUserById = async (req, res, next) => {
   try {

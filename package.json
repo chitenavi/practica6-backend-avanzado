@@ -16,6 +16,7 @@
     "server": "node ./server/bin/www",
     "pm2dev": "pm2 start ./server/ecosystem.config.js --watch && pm2 logs",
     "pm2": "pm2 start ./server/ecosystem.config.js --env production && pm2 logs",
+    "pm2kill": "pm2 stop all && pm2 delete all",
     "dev": "cross-env NODE_ENV=development DEBUG=practica6-backend-avanzado:* npm run server",
     "prod": "cross-env NODE_ENV=production npm run server",
     "initdb": "node ./server/data/dev-data/init-db",
