@@ -3,10 +3,7 @@ const createError = require('http-errors');
 
 module.exports = function () {
   return (req, res, next) => {
-    // check if we receive a header parameter Authorization
-    // with a valid JWT // get the token from header, body or query string
-    const tokenJWT =
-      req.get('Authorization') || req.query.token || req.body.token;
+    const [bearer, tokenJWT] = (req.get('Authorization') || '').split(' ');
 
     // if no token then return error 401
     if (!tokenJWT) {
