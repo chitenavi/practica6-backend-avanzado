@@ -174,6 +174,10 @@ const getAdvertById = async (req, res, next) => {
   try {
     const advert = await Advert.findById(req.params.id);
 
+    if (advert.image) {
+      advert.image = `/img/adverts/${advert.image}`;
+    }
+
     res.status(200).json({
       status: 'success',
       requestedAt: req.requestTime,
