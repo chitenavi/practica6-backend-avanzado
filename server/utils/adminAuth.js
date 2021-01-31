@@ -9,7 +9,9 @@ module.exports = function () {
 
     if (!user) return next(createError(404, 'Not found'));
 
-    req.adminAuth = user.rol === 'ADMIN';
+    if (user.rol !== 'ADMIN') {
+      return next(createError(401, 'Unauthorized request!'));
+    }
 
     next();
   };

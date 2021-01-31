@@ -56,10 +56,6 @@ const signToken = id => {
 
 const getAllUsers = async (req, res, next) => {
   try {
-    if (!req.adminAuth) {
-      return next(createError(401, 'Unauthorized request!'));
-    }
-
     const users = await User.find();
 
     res.status(200).json({
@@ -118,10 +114,6 @@ const getAllUsers = async (req, res, next) => {
 
 const getUserById = async (req, res, next) => {
   try {
-    if (!req.adminAuth) {
-      return next(createError(401, 'Unauthorized request!'));
-    }
-
     const user = await User.findById(req.params.id);
 
     res.status(200).json({
@@ -182,12 +174,6 @@ const getUserById = async (req, res, next) => {
 
 const signup = async (req, res, next) => {
   try {
-    // console.log('Admin:', req.adminAuth);
-    if (req.body.rol === 'ADMIN' && !req.adminAuth) {
-      // Only admin user can create another admin user
-      return next(createError(401, 'Unauthorized request!'));
-    }
-
     // Create new user to DB
     const newUser = await User.create({
       username: req.body.username,
@@ -286,6 +272,7 @@ const authenticate = async (req, res, next) => {
     res.status(200).json({
       status: 'success',
       token: tokenJWT,
+      rol: user.rol,
     });
   } catch (err) {
     next(createError(401, err));
@@ -322,12 +309,6 @@ const authenticate = async (req, res, next) => {
 
 const deleteUserById = async (req, res, next) => {
   try {
-    // console.log('Admin:', req.adminAuth);
-    if (!req.adminAuth) {
-      // Only admin user can delete users
-      return next(createError(401, 'Unauthorized request!'));
-    }
-
     // Check if it is different id
     // (prevent erase admin himself)
     if (req.params.id === req.apiAuthUserId) {
