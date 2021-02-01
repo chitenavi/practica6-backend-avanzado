@@ -35,11 +35,10 @@ class LoginController {
       // apuntar el _id del usuario en su sessión
       req.session.authUser = {
         _id: user._id,
-        // rol: ...
+        rol: user.rol,
       };
 
       // redirect to user dashboard
-      // console.log(`${user.username} logged successfully!`);
       res.redirect('/dashboard');
     } catch (err) {
       next(err);
