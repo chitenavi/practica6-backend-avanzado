@@ -8,7 +8,7 @@ module.exports = function (mongoConnection) {
     saveUninitialized: true,
     resave: false,
     cookie: {
-      secure: process.env.NODE_ENV === 'production',
+      secure: false,
       maxAge: 1000 * 60 * 60 * 24 * 2, // 2 days
     },
     store: new MongoStore({
