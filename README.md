@@ -28,7 +28,15 @@
 >
 > Everything is generated using the _express-generator_ module, with some changes in the file structure under the MVC architecture. Rendering views using _ejs_
 
-### 🏠 [Homepage](https://localhost:3000/ 'Default')
+## DevOps module practice
+
+### 🏠 [Homepage, nodepopapi.chitenavi-dev.com ](https://nodepopapi.chitenavi-dev.com/) (Backend Node)
+
+### 💻 [Nodepop SPA, nodepopspa.chitenavi-dev.com] (https://nodepopspa.chitenavi-dev.com/) (React Frontend)
+
+> You can test the deployed application, first the backend with dynamic content rendered on the server, on the other hand the following link is the frontend application developed with react, here use _"user@example.com"_ as user and _"1234"_ as password to test. Both deployments using the methods seen in the module and with the required points.
+
+## Development
 
 > By default, if you run the app on your computer, home page is https://localhost:3000. You can edit the port number you want.
 
