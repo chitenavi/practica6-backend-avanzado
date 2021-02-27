@@ -3,7 +3,7 @@
  */
 
 const express = require('express');
-const adminAuth = require('../../utils/adminAuth');
+// const adminAuth = require('../../utils/adminAuth');
 
 // const { advertValidationRules, validate } = require('../../utils/validators');
 const uploadAdvImg = require('../../controllers/uploadController');
@@ -22,10 +22,7 @@ const router = express.Router();
 
 /* GET /api/v1/adverts */
 /* POST /api/v1/adverts */
-router
-  .route('/')
-  .get(getAllAdverts)
-  .post(adminAuth(), uploadAdvImg, createAdvert);
+router.route('/').get(getAllAdverts).post(uploadAdvImg, createAdvert);
 
 /* GET /api/v1/adverts/tags */
 router.route('/tags').get(getAllExistTags);
@@ -36,7 +33,7 @@ router.route('/tags').get(getAllExistTags);
 router
   .route('/:id')
   .get(getAdvertById)
-  .put(adminAuth(), uploadAdvImg, updateAdvertById)
-  .delete(adminAuth(), deleteAdvertById);
+  .put(uploadAdvImg, updateAdvertById)
+  .delete(deleteAdvertById);
 
 module.exports = router;
