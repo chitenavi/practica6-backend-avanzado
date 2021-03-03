@@ -56,6 +56,11 @@ const initUsersDB = async () => {
       password: await User.hashPassword(process.env.DEV_USER_PASS),
     },
     {
+      username: 'UserTest2',
+      email: 'user2@example.com',
+      password: await User.hashPassword(process.env.DEV_USER2_PASS),
+    },
+    {
       username: process.env.ADMIN_USERNAME,
       email: process.env.ADMIN_EMAIL,
       avatar: process.env.ADMIN_AVATAR,
@@ -92,7 +97,7 @@ conn.once('open', async () => {
       return process.exit();
     }
 
-    await initAdvertsDB();
+    // await initAdvertsDB();
     await initUsersDB();
 
     // close connection
